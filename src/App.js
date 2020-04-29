@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+      return (
+          <div>
+              <section>
+                  <h1>
+                      Welcome to the Microsoft Authentication Library For
+                      Javascript - React Quickstart
+                  </h1>
+                  {!props.account ? (
+                      <button onClick={props.onSignIn}>Sign In</button>
+                  ) : (
+                      
+                          <button onClick={props.onSignOut}>
+                              Sign Out
+                          </button>
+                      
+                  )}
+                  {props.error && (
+                      <p className="error">Error: {props.error}</p>
+                  )}
+              </section>
+              <section className="data">
+                  {props.account && (
+                      <div className="data-account">
+                          <h2>{props.account}</h2>
+                      </div>
+                  )}
+              </section>
+          </div>
+      );
 }
 
 export default App;
