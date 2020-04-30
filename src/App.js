@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
+import AuthProvider from './AuthProvider';
 
-function App(props) {
+class App extends React.Component {
+
+  render() {
+    console.log('props', this.props)
       return (
           <div>
               <section>
@@ -9,28 +13,24 @@ function App(props) {
                       Welcome to the Microsoft Authentication Library For
                       Javascript - React Quickstart
                   </h1>
-                  {!props.account ? (
-                      <button onClick={props.onSignIn}>Sign In</button>
-                  ) : (
-                      
-                          <button onClick={props.onSignOut}>
-                              Sign Out
-                          </button>
-                      
-                  )}
-                  {props.error && (
-                      <p className="error">Error: {props.error}</p>
+                  {!this.props.account ? 
+                      <button onClick={this.props.onSignIn}>Sign In</button>
+                    : <button onClick={this.props.onSignOut}>Sign Out</button>
+                  }
+                  {this.props.error && (
+                      <p className="error">Error: {this.props.error}</p>
                   )}
               </section>
               <section className="data">
-                  {props.account && (
+                  {this.props.account && (
                       <div className="data-account">
-                          <h2>{props.account}</h2>
+                          {/* <h2>{this.props.account}</h2> */}
                       </div>
                   )}
               </section>
           </div>
       );
+  }
 }
 
-export default App;
+export default AuthProvider(App);
